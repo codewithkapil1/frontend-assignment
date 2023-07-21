@@ -1,9 +1,12 @@
+"use client";
 import Link from "next/link";
 import { GoSearch } from "react-icons/go";
 import { LiaCartPlusSolid } from "react-icons/lia";
 import { AiOutlineMenu } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
+  const data = useSelector((state) => state.cart.cart);
   return (
     <div className="w-full">
       <div className="flex items-center justify-center w-full h-8 my-auto text-sm font-light tracking-wider text-white bg-slate-950 ">
@@ -48,7 +51,7 @@ const Navbar = () => {
               <LiaCartPlusSolid size={28} />
             </Link>
             <span className="absolute right-[-10px] px-[6px] text-sm rounded-full top-[-10px] text-white  bg-lime-500">
-              5
+              {data.length}
             </span>
           </div>
         </div>

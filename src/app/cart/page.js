@@ -1,18 +1,38 @@
-import Image from "next/image";
+"use client";
+import { remove } from "@/redux/cartSlice";
 import { RxCross2 } from "react-icons/rx";
+import { useDispatch, useSelector } from "react-redux";
+
 const page = () => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.cart.cart);
   return (
     <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-6rem)] flex flex-col text-slate-800 md:flex-row">
       {/* PRODUCT CONTAINER */}
       <div className="flex flex-col justify-center p-4 overflow-y-scroll md:overflow-hidden h-1/2 md:h-full md:w-2/3">
-        <div className="flex items-center justify-between mb-4 singleItem">
-          <Image src="/hero.png" alt="img" width={100} height={100} />
+        {data.length === 0 ? (
+          <h1 className="text-2xl font-bold text-center">No Items in Cart</h1>
+        ) : (
           <div>
-            <h1 className="text-xl font-bold uppercase">kapil</h1>
+            {data?.map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center justify-between mb-4 singleItem">
+                <img src={item.image} alt="image" height={100} width={100} />
+                <div>
+                  <h1 className="text-xl font-bold uppercase">{item.title}</h1>
+                </div>
+                <h2 className="font-bold text-gray-500">${item.price}</h2>
+
+                <RxCross2
+                  onClick={() => dispatch(remove(item.id))}
+                  size={28}
+                  className="cursor-pointer"
+                />
+              </div>
+            ))}
           </div>
-          <h2 className="font-bold text-gray-500">$79.90</h2>
-          <RxCross2 size={28} className="cursor-pointer" />
-        </div>
+        )}
       </div>
       {/* PAYMENT CONTAINER */}
       <div className="flex flex-col justify-center gap-4 p-4 h-1/2 md:h-full md:w-1/3 bg-gray-50 ">
