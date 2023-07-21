@@ -1,7 +1,11 @@
+import Hero from "@/components/Hero";
+import Products from "@/components/Products";
+
 export default function Home() {
   return (
     <div>
-      <h1>kapil</h1>
+      <Hero />
+      <Products />
     </div>
   );
 }
