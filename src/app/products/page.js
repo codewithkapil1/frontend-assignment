@@ -6,7 +6,7 @@ import { GoSearch } from "react-icons/go";
 
 import { useEffect, useState } from "react";
 
-const page = () => {
+const Products = () => {
   const [data, setData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
@@ -118,4 +118,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Products;

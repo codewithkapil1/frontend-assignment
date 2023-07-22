@@ -1,6 +1,6 @@
 import Cart from "@/components/Cart";
 
-const page = () => {
+const Cart = () => {
   return (
     <div className="h-[calc(100vh-6rem)] md:h-[calc(100vh-6rem)] flex flex-col text-slate-800 md:flex-row">
       {/* PRODUCT CONTAINER */}
@@ -34,4 +34,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Cart;
