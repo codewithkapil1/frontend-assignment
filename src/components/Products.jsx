@@ -1,22 +1,26 @@
+"use client";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import Loader from "./Loader";
+import { useEffect, useState } from "react";
 
-async function getProduct() {
-  const res = await fetch("https://fakestoreapi.com/products", {
-    cache: "no-store",
-  });
-  if (!res.ok) {
-    return notFound();
-  }
-  return res.json();
-}
+const Products = () => {
+  const [data, setData] = useState(null);
 
-const Products = async () => {
-  const data = await getProduct();
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      });
+  }, []);
+
+  // if (!data) return <p>No profile data</p>;
   return (
     <>
-      {data ? (
+      {!data ? (
+        <Loader />
+      ) : (
         <div className="w-full h-full">
           <div className="w-[90%]  mx-auto">
             <h1 className="text-4xl text-center ">Products</h1>
@@ -46,8 +50,6 @@ const Products = async () => {
             </div>
           </div>
         </div>
-      ) : (
-        <Loader />
       )}
     </>
   );

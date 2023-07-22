@@ -1,9 +1,7 @@
 "use client";
-import { useState } from "react";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 import { useDispatch } from "react-redux";
-import { add, decreaseCart } from "@/redux/cartSlice";
-import Link from "next/link";
+import { add } from "@/redux/cartSlice";
 
 const SingleProduct = ({ data }) => {
   const dispatch = useDispatch();

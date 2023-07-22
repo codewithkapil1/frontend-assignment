@@ -75,10 +75,9 @@ const Footer = () => {
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row bottom ">
           <div className="flex items-center logo">
             <span className="text-4xl logofont">OnlineStore</span>
-            <img className="w-10" src="./images/logo.png" alt="" />
           </div>
           <span> @Copyright All right Reserved.</span>
-          <Image src='/payment.png' alt="payment" width={200} height={100} />
+          <Image src="/payment.png" alt="payment" width={200} height={100} />
         </div>
       </div>
     </div>

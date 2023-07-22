@@ -1,29 +1,43 @@
+"use client";
+import Loader from "@/components/Loader";
 import SingleProduct from "@/components/SingleProduct";
-import { notFound } from "next/navigation";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-async function getProduct(id) {
-  const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
-    cache: "no-store",
-  });
-  if (!res.ok) {
-    return notFound();
-  }
-  return res.json();
-}
+const Product = ({ params }) => {
 
-export default Product = async ({ params }) => {
-  const data = await getProduct(params.id);
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const allData = async (id) => {
+      try {
+        const res = await axios.get(`https://fakestoreapi.com/products/${id}`);
+        return setData(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    allData(params.id);
+  }, []);
 
   return (
-    <div className="flex gap-12 px-12 py-5 w-[90%] mx-auto product">
-      <SingleProduct data={data} />
-    </div>
+    <>
+      {!data ? (
+        <Loader />
+      ) : (
+        <div className="flex gap-12 px-12 py-5 w-[90%] mx-auto product">
+          <SingleProduct data={data} />
+        </div>
+      )}
+    </>
   );
 };
 
-export async function generateStaticParams() {
-  const data = await getProduct(params.id);
-  return data.map((data) => ({
-    id: data.id.toString(),
-  }));
-}
+// export async function generateStaticParams() {
+//   const data = await getProduct(params.id);
+//   return data.map((data) => ({
+//     id: data.id.toString(),
+//   }));
+// }
+
+export default Product;
