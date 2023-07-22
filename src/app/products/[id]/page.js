@@ -11,7 +11,7 @@ async function getProduct(id) {
   return res.json();
 }
 
-const Product = async ({ params }) => {
+export default Product = async ({ params }) => {
   const data = await getProduct(params.id);
 
   return (
@@ -21,4 +21,9 @@ const Product = async ({ params }) => {
   );
 };
 
-export default Product;
+export async function generateStaticParams() {
+  const data = await getProduct(params.id);
+  return data.map((data) => ({
+    id: data.id.toString(),
+  }));
+}
