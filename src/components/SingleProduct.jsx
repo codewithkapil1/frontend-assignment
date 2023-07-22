@@ -12,7 +12,7 @@ const SingleProduct = ({ data }) => {
           <img
             className="max-h-[600px] w-full object-contain px-5"
             src={data.image}
-            alt=""
+            alt="image"
           />
         </div>
       </div>
@@ -24,13 +24,13 @@ const SingleProduct = ({ data }) => {
         <p className="text-[18px] font-[300] text-justify">
           {data.description}
         </p>
-        
+
         {/* <Link href="/cart"> */}
-          <button
-            className="w-[200px] p-3 bg-transparent text-slate-900 cursor-pointer flex items-center justify-center gap-[10px] border-[1px] border-slate-900 transition-all duration-200  ease-in-out hover:bg-slate-900 hover:text-white add"
-            onClick={() => dispatch(add(data))}>
-            <AddShoppingCartOutlinedIcon /> ADD TO CART
-          </button>
+        <button
+          className="w-[200px] p-3 bg-transparent text-slate-900 cursor-pointer flex items-center justify-center gap-[10px] border-[1px] border-slate-900 transition-all duration-200  ease-in-out hover:bg-slate-900 hover:text-white add"
+          onClick={() => dispatch(add(data))}>
+          <AddShoppingCartOutlinedIcon /> ADD TO CART
+        </button>
         {/* </Link> */}
       </div>
     </div>

@@ -5,7 +5,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Product = ({ params }) => {
-
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -18,7 +17,7 @@ const Product = ({ params }) => {
       }
     };
     allData(params.id);
-  }, []);
+  }, [params.id]);
 
   return (
     <>
